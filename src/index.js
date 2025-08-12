@@ -3,13 +3,15 @@ import authRoutes from "./routes/auth.routes.js"
 import dotenv from "dotenv"
 import { connectDB } from "./lib/db.js";
 
-const app = express();
+dotenv.config();
 
+const app = express();
+app.use(express.json()); // parses incoming JSON
 
 app.use("/api/auth", authRoutes);
 
-dotenv.config();
 const PORT = process.env.PORT
+
 
 app.listen(PORT, () => {
     connectDB();
